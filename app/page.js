@@ -8,14 +8,14 @@ export default function Home() {
   const [weather, setWeather] = useState('')
   
   const getWeather = async () => {
-    const api_key = 'a326db83468f009a7aac0689dae0fa86'
-    const api_url = 'https://api.openweathermap.org/data/2.5/weather?q='+ location +'&units=metric&appid='+ api_key +'&lang=pt_br'
+    const api_key = process.env.NEXT_PUBLIC_API_WEATHER_KEY
+    const api_url = 'https://api.openweathermap.org/data/2.5/weather?q='+location+'&units=metric&lang=pt_br&appid='+api_key
     
     if (location) {
       try {
         const res = await fetch(api_url)
         const data = await res.json()
-        console.log(data)
+
         if (data){
           const api_data = {
             country: data.sys.country,
